@@ -1,26 +1,122 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import DayPicker, {DateUtils } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import * as actions from './redux/actions/shelterActions';
+import InfoModal from './InfoModal';
+import axios from 'axios';
+import './styles/App.scss';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  
+  //Setting url to point at blooming castle
+  const shelterURL = 'https://blooming-castle-18936.herokuapp.com/shelterData/';
 
-export default App;
+  //redux initialization (setting state + setting dispatch variable)
+  const shelterArray = useSelector(state => state);
+  const dispatch = useDispatch();
+
+  //local state 
+  const [selectedDay, setDay] = useState(null); //calendar state
+  const [formattedDate, setFormattedDate] = useState(null) //formatting date for url request
+  const [tableTest, setTableTest] = useState(false);
+  const [modalState, setModalState] = useState(false);
+
+  useEffect(() => {
+    console.log(shelterArray.shelters);
+  }, [shelterArray]);
+
+  //Fetch data from blooming-castle db
+  useEffect(() => {    
+    async function fetchData() {
+      const result = await axios(`${shelterURL}${formattedDate}`);
+      return result;
+    }
+    fetchData()
+    .then(result => (dispatch(actions.addShelterData(result.data))))   
+  }, [formattedDate]);
+
+  //react day picker click handler
+  const handleDayClick = (data) => {  
+    setDay(data)
+
+    //date formatting bullshittery
+    let year = data.getFullYear();
+    let day = data.getDate();
+    let month = data.getMonth() + 1;
+    setTableTest(true);
+    if (day < 10){
+      day = `0${day}`;
+    }
+    if (month < 10){
+      month = `0${month}`;
+    }
+    if (year > 2019){
+    setFormattedDate(`${year}-${month}-${day}T00:00:00`);
+    } else if (year <= 2019){
+      setFormattedDate(`${year}-${month}-${day}`);
+    }
+  }
+
+    //process data
+    const doTheProcessing = () => {
+      dispatch(actions.changeModalState())
+      dispatch(actions.addWomenData(shelterArray.shelters[0].filter(item => ((item.SECTOR.includes('Women'))))));
+      dispatch(actions.addMenData(shelterArray.shelters[0].filter(item => ((item.SECTOR.includes('Men'))))));
+      dispatch(actions.addFamilyData(shelterArray.shelters[0].filter(item => ((item.SECTOR.includes('Families'))))));
+      
+    }
+
+  //rendering data to table
+  const renderTableData = () => {
+    return shelterArray.shelters[0].map((item, index) => {
+       return (
+          <tr key={Math.random()}>
+            <td className='shelterTable__body-row'>{item.OCCUPANCY_DATE}</td>
+            <td className='shelterTable__body-row'>{item.SHELTER_NAME}</td>
+            <td className='shelterTable__body-row'>{item.PROGRAM_NAME}</td>
+            <td className='shelterTable__body-row'>{item.OCCUPANCY}</td>
+            <td className='shelterTable__body-row'>{item.CAPACITY}</td>
+            <td className='shelterTable__body-row'>{Number((item.OCCUPANCY/item.CAPACITY)*100).toFixed(2)+ '%'}</td>
+          </tr>
+       )
+    })
+ }
+    return (
+      <>
+      <div className='calendar'>
+        <DayPicker className='theActual'
+          selectedDays={selectedDay}
+          onDayClick={(data) => handleDayClick(data)}
+          disabledDays={[
+            {
+              after: (new Date(new Date().setDate(new Date().getDate()-1))),
+            },
+          ]}
+        />
+        <p>
+          {selectedDay
+            ? `${'Selected day: '}`+ selectedDay.getDate()+`${'/'}`+(selectedDay.getMonth()+1)+`${'/'}`+selectedDay.getFullYear()
+            : 'Please select a day'}
+        </p>
+        {tableTest ? <button className='dataButton' onClick={() => doTheProcessing()}>Toggle More Data</button> : null}
+        {shelterArray.modalState ? <InfoModal/> : null}
+        {tableTest ? <table className='shelterTable' id='shelters'>
+               <tbody className='shelterTable__body'>
+                 <tr>
+                   <th>Date</th>
+                   <th>Shelter Name</th>
+                   <th>Program Name</th>
+                   <th>Occupancy</th>
+                   <th>Capacity</th>
+                   <th>% Occupancy</th>
+                </tr>
+                  {renderTableData()}
+               </tbody>
+            </table> : null}
+      </div>
+      </>
+    );
+  }
+
+  export default App;
