@@ -72,12 +72,12 @@ function App() {
     return shelterArray.shelters[0].map((item, index) => {
        return (
           <tr key={Math.random()}>
-            <td className='shelterTable__body-row'>{item.OCCUPANCY_DATE}</td>
+            <td className='shelterTable__body-row--date'>{item.OCCUPANCY_DATE.slice(0,10)}</td>
             <td className='shelterTable__body-row'>{item.SHELTER_NAME}</td>
             <td className='shelterTable__body-row'>{item.PROGRAM_NAME}</td>
-            <td className='shelterTable__body-row'>{item.OCCUPANCY}</td>
-            <td className='shelterTable__body-row'>{item.CAPACITY}</td>
-            <td className='shelterTable__body-row'>{Number((item.OCCUPANCY/item.CAPACITY)*100).toFixed(2)+ '%'}</td>
+            <td className='shelterTable__body-row--small'>{item.OCCUPANCY}</td>
+            <td className='shelterTable__body-row--small'>{item.CAPACITY}</td>
+            <td className='shelterTable__body-row--small'>{Number((item.OCCUPANCY/item.CAPACITY)*100).toFixed(2)+ '%'}</td>
           </tr>
        )
     })

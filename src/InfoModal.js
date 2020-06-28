@@ -60,8 +60,8 @@ function InfoModal() {
         <div className='infoModal'>
         <p className='infoModal__para'>Total Occupancy in system: <span className='infoModal__para-span'>{totOcc}</span></p>
         <p className='infoModal__para'>Total Capacity of system: <span className='infoModal__para-span'>{totCap}</span></p>
-        <p className='infoModal__para'>Total Capacity (Women): <span className='infoModal__para-span'>{womenCap}</span></p>
         <p className='infoModal__para'>Total Occupancy (Women): <span className='infoModal__para-span'>{womenOcc}</span></p>
+        <p className='infoModal__para'>Total Capacity (Women): <span className='infoModal__para-span'>{womenCap}</span></p>
         <p className='infoModal__para'>Total Occupancy (Men): <span className='infoModal__para-span'>{menOcc}</span></p>
         <p className='infoModal__para'>Total Capacity (Men): <span className='infoModal__para-span'>{menCap}</span></p>
         <p className='infoModal__para'>Total Occupancy (Families): <span className='infoModal__para-span'>{familyOcc}</span></p>

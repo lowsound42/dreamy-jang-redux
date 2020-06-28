@@ -17,4 +17,14 @@
 .shelterTable__body-row{
     border: 1px solid black;
     width: 15rem;
+
+    &--date{
+      border: 1px solid black;
+      width: 8rem;
+    }
+
+    &--small{
+      border: 1px solid black;
+      width: 5rem;
+    }
 }
