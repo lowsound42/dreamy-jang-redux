@@ -18,3 +18,13 @@
     }
   }
 }
+
+.infoTable{
+  margin: auto;
+  text-align: left;
+  border: 1px black solid;
+
+  &__body-cell{
+    border: 1px black solid;
+  }
+}

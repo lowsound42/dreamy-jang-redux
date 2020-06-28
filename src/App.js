@@ -64,7 +64,8 @@ function App() {
       dispatch(actions.addWomenData(shelterArray.shelters[0].filter(item => ((item.SECTOR.includes('Women'))))));
       dispatch(actions.addMenData(shelterArray.shelters[0].filter(item => ((item.SECTOR.includes('Men'))))));
       dispatch(actions.addFamilyData(shelterArray.shelters[0].filter(item => ((item.SECTOR.includes('Families'))))));
-      
+      dispatch(actions.addCoedData(shelterArray.shelters[0].filter(item => ((item.SECTOR.includes('Co-ed'))))));
+      dispatch(actions.addYouthData(shelterArray.shelters[0].filter(item => ((item.SECTOR.includes('Youth'))))));
     }
 
   //rendering data to table

@@ -18,6 +18,10 @@ function InfoModal() {
   const [womenCap, setWomenCap] = useState(0);
   const [familyOcc, setFamilyOcc] = useState(0);
   const [familyCap, setFamilyCap] = useState(0);
+  const [coedOcc, setCoedOcc] = useState(0);
+  const [coedCap, setCoedCap] = useState(0);
+  const [youthOcc, setYouthOcc] = useState(0);
+  const [youthCap, setYouthCap] = useState(0);
 
   useEffect(() => {
     for (let i = 0; i < shelterArray.shelters[0].length; i++)
@@ -40,6 +44,16 @@ function InfoModal() {
       setFamilyOcc(prevState => prevState + shelterArray.familyData[0][i].OCCUPANCY)
       setFamilyCap(prevState => prevState + shelterArray.familyData[0][i].CAPACITY)
     }
+    for (let i = 0; i < shelterArray.coedData[0].length; i++)
+    {
+      setCoedOcc(prevState => prevState + shelterArray.coedData[0][i].OCCUPANCY)
+      setCoedCap(prevState => prevState + shelterArray.coedData[0][i].CAPACITY)
+    }
+    for (let i = 0; i < shelterArray.youthData[0].length; i++)
+    {
+      setYouthOcc(prevState => prevState + shelterArray.youthData[0][i].OCCUPANCY)
+      setYouthCap(prevState => prevState + shelterArray.youthData[0][i].CAPACITY)
+    }
   }, [shelterArray]);
 
 
@@ -58,14 +72,58 @@ function InfoModal() {
     return (
       <>
         <div className='infoModal'>
-        <p className='infoModal__para'>Total Occupancy in system: <span className='infoModal__para-span'>{totOcc}</span></p>
-        <p className='infoModal__para'>Total Capacity of system: <span className='infoModal__para-span'>{totCap}</span></p>
-        <p className='infoModal__para'>Total Occupancy (Women): <span className='infoModal__para-span'>{womenOcc}</span></p>
-        <p className='infoModal__para'>Total Capacity (Women): <span className='infoModal__para-span'>{womenCap}</span></p>
-        <p className='infoModal__para'>Total Occupancy (Men): <span className='infoModal__para-span'>{menOcc}</span></p>
-        <p className='infoModal__para'>Total Capacity (Men): <span className='infoModal__para-span'>{menCap}</span></p>
-        <p className='infoModal__para'>Total Occupancy (Families): <span className='infoModal__para-span'>{familyOcc}</span></p>
-        <p className='infoModal__para'>Total Capacity (Families): <span className='infoModal__para-span'>{familyCap}</span></p>
+        <table className='infoTable' id='info'>
+               <tbody className='infoTable__body'>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Occupancy (System)</td>
+                   <td className='infoTable__body-cell'>{totOcc}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Capacity (System)</td>
+                   <td className='infoTable__body-cell'>{totCap}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Occupancy (Men)</td>
+                   <td className='infoTable__body-cell'>{menOcc}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Capacity (Men)</td>
+                   <td className='infoTable__body-cell'>{menCap}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Occupancy (Women)</td>
+                   <td className='infoTable__body-cell'>{womenOcc}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Capacity (Women)</td>
+                   <td className='infoTable__body-cell'>{womenCap}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Occupancy (Families)</td>
+                   <td className='infoTable__body-cell'>{familyOcc}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Capacity (Families)</td>
+                   <td className='infoTable__body-cell'>{familyCap}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Occupancy (Coed)</td>
+                   <td className='infoTable__body-cell'>{coedOcc}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Capacity (Coed)</td>
+                   <td className='infoTable__body-cell'>{coedCap}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Occupancy (Youth)</td>
+                   <td className='infoTable__body-cell'>{youthOcc}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Total Capacity (Youth)</td>
+                   <td className='infoTable__body-cell'>{youthCap}</td>
+                 </tr>
+               </tbody>
+               </table>
           <button onClick={() => dispatch(actions.changeModalState())}>Close Window</button>
         </div>
       </>

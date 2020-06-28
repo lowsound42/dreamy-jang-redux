@@ -5,6 +5,8 @@ const initialShelterState = {
   womenData: [],
   menData: [],
   familyData: [],
+  coedData: [],
+  youthData: [],
   sumData: {
     'menOccupancy': 0,
     'menCapacity': 0,
@@ -50,6 +52,19 @@ function shelterReducer(state = initialShelterState, action) {
         ...state,
         familyData: [action.payload]
       }
+
+      case shelterActions.ADD_COED_DATA:
+        return{
+          ...state,
+          coedData: [action.payload]
+        }
+        
+      case shelterActions.ADD_YOUTH_DATA:
+        console.log(action.payload);
+        return{
+          ...state,
+          youthData: [action.payload]
+        }
 
     default:
       console.log('actually here')
