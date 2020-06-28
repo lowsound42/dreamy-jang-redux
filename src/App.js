@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import DayPicker, {DateUtils } from 'react-day-picker';
+import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as actions from './redux/actions/shelterActions';
 import InfoModal from './InfoModal';
 import axios from 'axios';
