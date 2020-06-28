@@ -75,52 +75,46 @@ function InfoModal() {
         <table className='infoTable' id='info'>
                <tbody className='infoTable__body'>
                  <tr>
-                   <td className='infoTable__body-cell'>Total Occupancy (System)</td>
-                   <td className='infoTable__body-cell'>{totOcc}</td>
+                   <td className='infoTable__body-cell'>Sector</td>
+                   <td className='infoTable__body-cell'>Occupancy</td>
+                   <td className='infoTable__body-cell'>Capacity</td>
+                   <td className='infoTable__body-cell'>Percentage Occupancy</td>
                  </tr>
                  <tr>
-                   <td className='infoTable__body-cell'>Total Capacity (System)</td>
-                   <td className='infoTable__body-cell'>{totCap}</td>
-                 </tr>
-                 <tr>
-                   <td className='infoTable__body-cell'>Total Occupancy (Men)</td>
-                   <td className='infoTable__body-cell'>{menOcc}</td>
-                 </tr>
-                 <tr>
-                   <td className='infoTable__body-cell'>Total Capacity (Men)</td>
-                   <td className='infoTable__body-cell'>{menCap}</td>
-                 </tr>
-                 <tr>
-                   <td className='infoTable__body-cell'>Total Occupancy (Women)</td>
+                   <td className='infoTable__body-cell'>Women</td>
                    <td className='infoTable__body-cell'>{womenOcc}</td>
-                 </tr>
-                 <tr>
-                   <td className='infoTable__body-cell'>Total Capacity (Women)</td>
                    <td className='infoTable__body-cell'>{womenCap}</td>
+                   <td className='infoTable__body-cell'>{Number((womenOcc/womenCap)*100).toFixed(2)+'%'}</td>
                  </tr>
                  <tr>
-                   <td className='infoTable__body-cell'>Total Occupancy (Families)</td>
+                   <td className='infoTable__body-cell'>Men</td>
+                   <td className='infoTable__body-cell'>{menOcc}</td>
+                   <td className='infoTable__body-cell'>{menCap}</td>
+                   <td className='infoTable__body-cell'>{Number((menOcc/menCap)*100).toFixed(2)+'%'}</td>
+                 </tr>
+                 <tr>
+                   <td className='infoTable__body-cell'>Families</td>
                    <td className='infoTable__body-cell'>{familyOcc}</td>
-                 </tr>
-                 <tr>
-                   <td className='infoTable__body-cell'>Total Capacity (Families)</td>
                    <td className='infoTable__body-cell'>{familyCap}</td>
+                   <td className='infoTable__body-cell'>{Number((familyOcc/familyCap)*100).toFixed(2)+'%'}</td>
                  </tr>
                  <tr>
-                   <td className='infoTable__body-cell'>Total Occupancy (Coed)</td>
+                   <td className='infoTable__body-cell'>Co-ed</td>
                    <td className='infoTable__body-cell'>{coedOcc}</td>
-                 </tr>
-                 <tr>
-                   <td className='infoTable__body-cell'>Total Capacity (Coed)</td>
                    <td className='infoTable__body-cell'>{coedCap}</td>
+                   <td className='infoTable__body-cell'>{Number((coedOcc/coedCap)*100).toFixed(2)+'%'}</td>
                  </tr>
                  <tr>
-                   <td className='infoTable__body-cell'>Total Occupancy (Youth)</td>
+                   <td className='infoTable__body-cell'>Youth</td>
                    <td className='infoTable__body-cell'>{youthOcc}</td>
+                   <td className='infoTable__body-cell'>{youthCap}</td>
+                   <td className='infoTable__body-cell'>{Number((youthOcc/youthCap)*100).toFixed(2)+'%'}</td>
                  </tr>
                  <tr>
-                   <td className='infoTable__body-cell'>Total Capacity (Youth)</td>
-                   <td className='infoTable__body-cell'>{youthCap}</td>
+                   <td className='infoTable__body-cell'>Total</td>
+                   <td className='infoTable__body-cell'>{totOcc}</td>
+                   <td className='infoTable__body-cell'>{totCap}</td>
+                   <td className='infoTable__body-cell'>{Number((totOcc/totCap)*100).toFixed(2)+'%'}</td>
                  </tr>
                </tbody>
                </table>
