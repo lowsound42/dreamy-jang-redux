@@ -9,6 +9,7 @@ export const ADD_COED_DATA = 'ADD_COED_DATA';
 export const ADD_YOUTH_DATA = 'ADD_YOUTH_DATA';
 export const TOGGLE_SPINNER_OFF = 'TOGGLE_SPINNER_ON';
 export const TOGGLE_SPINNER_ON = 'TOGGLE_SPINNER_OFF';
+export const ADD_SELECTED_DATE = 'ADD_SELECTED_DATE';
 
 
 //Action Creators
@@ -16,6 +17,11 @@ export const addShelterData = value => ({
   type: ADD_SHELTER_DATA,
   payload: value
 });
+
+export const addSelectedDate = value => ({
+  type: ADD_SELECTED_DATE,
+  payload: value
+})
 
 export const addWomenData = value => ({
   type: ADD_WOMEN_DATA,

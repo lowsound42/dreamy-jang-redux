@@ -2,6 +2,7 @@ import * as shelterActions from '../actions/shelterActions';
 
 const initialShelterState = {
   shelters: [],
+  date: null,
   womenData: [],
   menData: [],
   familyData: [],
@@ -19,9 +20,15 @@ function shelterReducer(state = initialShelterState, action) {
         ...state,
         shelters: [action.payload]
       }
-
+    
+    case shelterActions.ADD_SELECTED_DATE:
+      return {
+        ...state,
+        date: action.payload
+      }
+      
     case shelterActions.TOGGLE_SPINNER_ON:
-      return{
+      return {
         ...state,
         spinnerState: true
       }

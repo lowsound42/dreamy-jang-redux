@@ -34,7 +34,8 @@ function App() {
 
 
   //Fetch data from blooming-castle db
-  useEffect(() => {    
+  useEffect(() => {
+    formattedDate ? dispatch(actions.addSelectedDate(formattedDate.slice(0,10))): dispatch(actions.addSelectedDate(formattedDate));    
     async function fetchData() {
       const result = await axios(`${shelterURL}${formattedDate}`);
       return result;

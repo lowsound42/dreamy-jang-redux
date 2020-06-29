@@ -72,6 +72,7 @@ function InfoModal() {
     return (
       <>
         <div className='infoModal'>
+        <p>Date: {shelterArray.date}</p>
         <table className='infoTable' id='info'>
                <tbody className='infoTable__body'>
                  <tr>
