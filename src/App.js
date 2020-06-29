@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from './redux/actions/shelterActions';
 import InfoModal from './InfoModal';
 import axios from 'axios';
+import Spinner from './Spinner';
 import './styles/App.scss';
 
 function App() {
@@ -20,11 +21,17 @@ function App() {
   const [selectedDay, setDay] = useState(null); //calendar state
   const [formattedDate, setFormattedDate] = useState(null) //formatting date for url request
   const [tableTest, setTableTest] = useState(false);
-  const [modalState, setModalState] = useState(false);
 
+ 
   useEffect(() => {
-    console.log(shelterArray.shelters);
-  }, [shelterArray]);
+    console.log(shelterArray.shelters[0])
+      if ((shelterArray.shelters[0] < 1) && selectedDay)
+      {
+        dispatch(actions.toggleSpinnerOn())
+      }
+      else dispatch(actions.toggleSpinnerOff());
+    }, [shelterArray.shelters]);
+
 
   //Fetch data from blooming-castle db
   useEffect(() => {    
@@ -33,12 +40,14 @@ function App() {
       return result;
     }
     fetchData()
-    .then(result => (dispatch(actions.addShelterData(result.data))))   
+    .then(result => (dispatch(actions.addShelterData(result.data))))  
   }, [formattedDate]);
+
 
   //react day picker click handler
   const handleDayClick = (data) => {  
-    setDay(data)
+    
+    setDay(data) 
 
     //date formatting bullshittery
     let year = data.getFullYear();
@@ -75,7 +84,7 @@ function App() {
           <tr key={Math.random()}>
             <td className='shelterTable__body-row--date'>{item.OCCUPANCY_DATE.slice(0,10)}</td>
             <td className='shelterTable__body-row'>{item.SHELTER_NAME}</td>
-            <td className='shelterTable__body-row'>{item.PROGRAM_NAME}</td>
+            <td className='shelterTable__body-row--big'>{item.PROGRAM_NAME}</td>
             <td className='shelterTable__body-row--small'>{item.OCCUPANCY}</td>
             <td className='shelterTable__body-row--small'>{item.CAPACITY}</td>
             <td className='shelterTable__body-row--small'>{Number((item.OCCUPANCY/item.CAPACITY)*100).toFixed(2)+ '%'}</td>
@@ -97,10 +106,10 @@ function App() {
         />
         <p>
           {selectedDay
-            ? `${'Selected day: '}`+ selectedDay.getDate()+`${'/'}`+(selectedDay.getMonth()+1)+`${'/'}`+selectedDay.getFullYear()
+            ? null
             : 'Please select a day'}
         </p>
-        {tableTest ? <button className='dataButton' onClick={() => doTheProcessing()}>Toggle More Data</button> : null}
+        {tableTest ? <button className='dataButton' onClick={() => doTheProcessing()}>More Data</button> : null}
         {shelterArray.modalState ? <InfoModal/> : null}
         {tableTest ? <table className='shelterTable' id='shelters'>
                <tbody className='shelterTable__body'>
@@ -115,6 +124,7 @@ function App() {
                   {renderTableData()}
                </tbody>
             </table> : null}
+        {shelterArray.spinnerState ? <Spinner/> : null}
       </div>
       </>
     );

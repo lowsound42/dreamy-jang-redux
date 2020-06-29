@@ -7,6 +7,8 @@ export const ADD_MEN_DATA = 'ADD_MEN_DATA';
 export const ADD_FAMILY_DATA = 'ADD_FAMILY_DATA';
 export const ADD_COED_DATA = 'ADD_COED_DATA';
 export const ADD_YOUTH_DATA = 'ADD_YOUTH_DATA';
+export const TOGGLE_SPINNER_OFF = 'TOGGLE_SPINNER_ON';
+export const TOGGLE_SPINNER_ON = 'TOGGLE_SPINNER_OFF';
 
 
 //Action Creators
@@ -38,6 +40,14 @@ export const addCoedData = value => ({
 export const addYouthData = value => ({
   type: ADD_YOUTH_DATA,
   payload: value
+});
+
+export const toggleSpinnerOn = () => ({
+  type: TOGGLE_SPINNER_ON,
+});
+
+export const toggleSpinnerOff = () => ({
+  type: TOGGLE_SPINNER_OFF,
 });
 
 export const changeModalState = () => ({

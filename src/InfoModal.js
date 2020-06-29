@@ -75,10 +75,10 @@ function InfoModal() {
         <table className='infoTable' id='info'>
                <tbody className='infoTable__body'>
                  <tr>
-                   <td className='infoTable__body-cell'>Sector</td>
-                   <td className='infoTable__body-cell'>Occupancy</td>
-                   <td className='infoTable__body-cell'>Capacity</td>
-                   <td className='infoTable__body-cell'>Percentage Occupancy</td>
+                   <th className='infoTable__body-cell'>Sector</th>
+                   <th className='infoTable__body-cell'>Occupancy</th>
+                   <th className='infoTable__body-cell'>Capacity</th>
+                   <th className='infoTable__body-cell'>Percentage Occupancy</th>
                  </tr>
                  <tr>
                    <td className='infoTable__body-cell'>Women</td>
@@ -118,7 +118,7 @@ function InfoModal() {
                  </tr>
                </tbody>
                </table>
-          <button onClick={() => dispatch(actions.changeModalState())}>Close Window</button>
+          <button className='closeButton' onClick={() => dispatch(actions.changeModalState())}>Close Window</button>
         </div>
       </>
     );

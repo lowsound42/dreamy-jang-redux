@@ -7,16 +7,7 @@ const initialShelterState = {
   familyData: [],
   coedData: [],
   youthData: [],
-  sumData: {
-    'menOccupancy': 0,
-    'menCapacity': 0,
-    'womenOccupancy': 0,
-    'womenCapacity': 0,
-    'familyOccupancy': 0,
-    'familyCapacity': 0,
-    'totalOccupancy': 0,
-    'totalyCapacity': 0
-  },  
+  spinnerState: false,
   modalState: false,
 }
 
@@ -28,6 +19,18 @@ function shelterReducer(state = initialShelterState, action) {
         ...state,
         shelters: [action.payload]
       }
+
+    case shelterActions.TOGGLE_SPINNER_ON:
+      return{
+        ...state,
+        spinnerState: true
+      }
+
+      case shelterActions.TOGGLE_SPINNER_OFF:
+        return{
+          ...state,
+          spinnerState: false
+        }
 
     case shelterActions.CHANGE_MODAL_STATE:
       return{
@@ -67,7 +70,6 @@ function shelterReducer(state = initialShelterState, action) {
         }
 
     default:
-      console.log('actually here')
       return state
   }
 }

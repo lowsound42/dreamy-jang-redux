@@ -3,6 +3,23 @@
   margin-top: 8%;
 }
 
+.dataButton{
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  background-color: blue;
+  border-radius: 10px;
+  color: white;
+  border: none;
+}
+
+.dataButton:active {
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
+}
+
 .DayPicker-wrapper{
   border-radius: 10%;
   box-shadow: 2px 2px 3px 4px #ccc  ;
@@ -16,15 +33,23 @@
 
 .shelterTable__body-row{
     border: 1px solid black;
-    width: 15rem;
+    width: auto;
 
     &--date{
       border: 1px solid black;
       width: 8rem;
+      white-space: nowrap;
+    }
+
+    &--big{
+      border: 1px solid black;
+      width: auto;
+      white-space: nowrap;
     }
 
     &--small{
       border: 1px solid black;
-      width: 5rem;
+      width: auto;
+      text-align: center;
     }
 }

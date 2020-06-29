@@ -27,5 +27,23 @@
 
   &__body-cell{
     border: 1px black solid;
+    text-align: center;
   }
+}
+
+.closeButton{
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+  background-color: blue;
+  border-radius: 10px;
+  color: white;
+  border: none;
+}
+
+.closeButton:active {
+  background: #e5e5e5;
+  -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+     -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+          box-shadow: inset 0px 0px 5px #c1c1c1;
+   outline: none;
 }
