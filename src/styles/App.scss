@@ -1,6 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap");
+$orbitron-bold: 'Orbitron', sans-serif;
+
+.title{
+  font-family: $orbitron-bold;
+  text-align: center;
+  margin-top: 2rem;
+}
+
 .calendar {
   text-align: center;
-  margin-top: 8%;
+  margin-top: 4rem;
 }
 
 .dataButton{

@@ -94,6 +94,7 @@ function App() {
  }
     return (
       <>
+      <h1 className='title'>Dreamy Jang Reborn</h1>
       <div className='calendar'>
         <DayPicker className='theActual'
           selectedDays={selectedDay}
