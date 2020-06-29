@@ -6,6 +6,7 @@ import * as actions from './redux/actions/shelterActions';
 import InfoModal from './InfoModal';
 import axios from 'axios';
 import Spinner from './Spinner';
+import loader from './assets/loader.gif';
 import './styles/App.scss';
 
 function App() {
@@ -24,10 +25,9 @@ function App() {
   const [buttonTest, setButtonTest] = useState(false);
 
   const buttonTestFunc = () => {
-    setTimeout(() => {
-      console.log('did it?')
-      setButtonTest(true)
-    }, 2000)
+    setTimeout(
+      function(){setButtonTest(true)}
+    , 1500)
   }
 
  
@@ -43,7 +43,7 @@ function App() {
 
   //Fetch data from blooming-castle db
   useEffect(() => {
-    setButtonTest(false);
+    setTimeout(function(){setButtonTest(false)},500);
     formattedDate ? dispatch(actions.addSelectedDate(formattedDate.slice(0,10))): dispatch(actions.addSelectedDate(formattedDate));    
     async function fetchData() {
       const result = await axios(`${shelterURL}${formattedDate}`);
@@ -121,7 +121,7 @@ function App() {
             ? null
             : 'Please select a day'}
         </p>
-        {(buttonTest) ? <button className='dataButton' onClick={() => doTheProcessing()}>More Data</button> : null}
+        {buttonTest ? <button className='dataButton' onClick={() => doTheProcessing()}>More Data</button> : <img width='10%' height='10%' src={loader}/>}
         {shelterArray.modalState ? <InfoModal/> : null}
         {tableTest ? <table className='shelterTable' id='shelters'>
                <tbody className='shelterTable__body'>
