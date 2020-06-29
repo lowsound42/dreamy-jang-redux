@@ -73,6 +73,7 @@ function InfoModal() {
       <>
         <div className='infoModal'>
         <p>Date: {shelterArray.date}</p>
+        <p>Total # of Shelters: {shelterArray.shelters[0].length}</p>
         <table className='infoTable' id='info'>
                <tbody className='infoTable__body'>
                  <tr>
