@@ -24,6 +24,7 @@ function InfoModal() {
   const [youthCap, setYouthCap] = useState(0);
 
   useEffect(() => {
+    
     for (let i = 0; i < shelterArray.shelters[0].length; i++)
     {
       setTotOcc(prevState => prevState + shelterArray.shelters[0][i].OCCUPANCY)
@@ -54,7 +55,7 @@ function InfoModal() {
       setYouthOcc(prevState => prevState + shelterArray.youthData[0][i].OCCUPANCY)
       setYouthCap(prevState => prevState + shelterArray.youthData[0][i].CAPACITY)
     }
-  }, [shelterArray]);
+  }, [shelterArray.youthData[0]]);
 
 
 //   //render info table for modal

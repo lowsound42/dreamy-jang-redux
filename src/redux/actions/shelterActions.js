@@ -10,9 +10,13 @@ export const ADD_YOUTH_DATA = 'ADD_YOUTH_DATA';
 export const TOGGLE_SPINNER_OFF = 'TOGGLE_SPINNER_ON';
 export const TOGGLE_SPINNER_ON = 'TOGGLE_SPINNER_OFF';
 export const ADD_SELECTED_DATE = 'ADD_SELECTED_DATE';
-
+export const RESET_SHELTER_ARRAY = 'RESET_SHELTER_ARRAY';
 
 //Action Creators
+export const reset = () => ({
+  type: RESET_SHELTER_ARRAY
+})
+
 export const addShelterData = value => ({
   type: ADD_SHELTER_DATA,
   payload: value

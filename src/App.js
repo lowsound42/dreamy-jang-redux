@@ -21,6 +21,14 @@ function App() {
   const [selectedDay, setDay] = useState(null); //calendar state
   const [formattedDate, setFormattedDate] = useState(null) //formatting date for url request
   const [tableTest, setTableTest] = useState(false);
+  const [buttonTest, setButtonTest] = useState(false);
+
+  const buttonTestFunc = () => {
+    setTimeout(() => {
+      console.log('did it?')
+      setButtonTest(true)
+    }, 2000)
+  }
 
  
   useEffect(() => {
@@ -35,6 +43,7 @@ function App() {
 
   //Fetch data from blooming-castle db
   useEffect(() => {
+    setButtonTest(false);
     formattedDate ? dispatch(actions.addSelectedDate(formattedDate.slice(0,10))): dispatch(actions.addSelectedDate(formattedDate));    
     async function fetchData() {
       const result = await axios(`${shelterURL}${formattedDate}`);
@@ -80,6 +89,7 @@ function App() {
 
   //rendering data to table
   const renderTableData = () => {
+    buttonTestFunc()
     return shelterArray.shelters[0].map((item, index) => {
        return (
           <tr key={Math.random()}>
@@ -111,7 +121,7 @@ function App() {
             ? null
             : 'Please select a day'}
         </p>
-        {tableTest ? <button className='dataButton' onClick={() => doTheProcessing()}>More Data</button> : null}
+        {(buttonTest) ? <button className='dataButton' onClick={() => doTheProcessing()}>More Data</button> : null}
         {shelterArray.modalState ? <InfoModal/> : null}
         {tableTest ? <table className='shelterTable' id='shelters'>
                <tbody className='shelterTable__body'>

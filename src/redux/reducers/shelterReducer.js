@@ -21,19 +21,25 @@ function shelterReducer(state = initialShelterState, action) {
         shelters: [action.payload]
       }
     
+    case shelterActions.RESET_SHELTER_ARRAY:
+      return{
+        ...state,
+        shelters:[]
+      }
+
     case shelterActions.ADD_SELECTED_DATE:
       return {
         ...state,
         date: action.payload
       }
-      
+
     case shelterActions.TOGGLE_SPINNER_ON:
       return {
         ...state,
         spinnerState: true
       }
 
-      case shelterActions.TOGGLE_SPINNER_OFF:
+    case shelterActions.TOGGLE_SPINNER_OFF:
         return{
           ...state,
           spinnerState: false
