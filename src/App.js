@@ -27,7 +27,7 @@ function App() {
   const buttonTestFunc = () => {
     setTimeout(
       function(){setButtonTest(true)}
-    , 1500)
+    , 2000)
   }
 
  
@@ -43,7 +43,7 @@ function App() {
 
   //Fetch data from blooming-castle db
   useEffect(() => {
-    setTimeout(function(){setButtonTest(false)},500);
+    setTimeout(function(){setButtonTest(false)},800);
     formattedDate ? dispatch(actions.addSelectedDate(formattedDate.slice(0,10))): dispatch(actions.addSelectedDate(formattedDate));    
     async function fetchData() {
       const result = await axios(`${shelterURL}${formattedDate}`);
@@ -63,7 +63,7 @@ function App() {
     let year = data.getFullYear();
     let day = data.getDate();
     let month = data.getMonth() + 1;
-    setTableTest(true);
+    setTableTest(true)
     if (day < 10){
       day = `0${day}`;
     }
@@ -121,7 +121,7 @@ function App() {
             ? null
             : 'Please select a day'}
         </p>
-        {buttonTest ? <button className='dataButton' onClick={() => doTheProcessing()}>More Data</button> : <img width='10%' height='10%' src={loader}/>}
+        {buttonTest ? <button className='dataButton' onClick={() => doTheProcessing()}>More Data</button> : null}
         {shelterArray.modalState ? <InfoModal/> : null}
         {tableTest ? <table className='shelterTable' id='shelters'>
                <tbody className='shelterTable__body'>
