@@ -4,6 +4,7 @@ import * as actions from './redux/actions/shelterActions';
 import {DateRangeInput} from '@datepicker-react/styled'
 import moment from 'moment';
 import axios from 'axios';
+import './styles/Report.scss';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { addReportShelters } from './redux/actions/shelterActions';
@@ -31,14 +32,15 @@ function Report() {
    const shelterArray = useSelector(state => state);
    const dispatch = useDispatch();
 
-  const shelterURL = 'https://blooming-castle-18936.herokuapp.com/shelterData/  ';
+  const shelterURL = 'https://blooming-castle-18936.herokuapp.com/shelterData';
   const url = 'http://localhost:8080/shelterData/'
   const [dateArrayState, setDateArray] = useState([])
   const [tableTest, setTableTest] = useState(false);
   const [sector, setSector] = useState(null);
   const options = [
-    'Women', 'Men', 'Families', 'Co-ed', 'Youth'
+    'Pick a sector here and a date above', 'Women', 'Men', 'Families', 'Co-ed', 'Youth'
   ];
+  const defaultOption = options[0];
 
   const dropState = (event) => {
     setSector(event.value);
@@ -49,7 +51,7 @@ function Report() {
     if (loaded.current) {
       async function fetchData() {
         console.log(sector)
-        const result = await axios.post(`${url}/array`, {
+        const result = await axios.post(`${shelterURL}/array`, {
           data: dateArrayState,
           sector: sector
         })
@@ -110,7 +112,7 @@ function Report() {
       endDate={state.endDate} // Date or null
       focusedInput={state.focusedInput} // START_DATE, END_DATE or null
     />
-    <Dropdown options={options} onChange={(event) => dropState(event)} placeholder="Select an option" />;
+    <Dropdown className='dateRange' options={options} onChange={(event) => dropState(event)} value={defaultOption} placeholder="Select an option" />;
     <button onClick={() => sendData()}>Click to download info</button>
     {tableTest ? <table className='shelterTable' id='shelters'>
                <tbody className='shelterTable__body'>
