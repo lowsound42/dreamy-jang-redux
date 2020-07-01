@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from './redux/actions/shelterActions';
 import InfoModal from './InfoModal';
@@ -121,6 +122,7 @@ function App() {
             ? null
             : 'Please select a day'}
         </p>
+        <Link className='active-list--item_name' to='csv'>DOWNLOAD CUSTOM DATA</Link>
         {buttonTest ? <button className='dataButton' onClick={() => doTheProcessing()}>More Data</button> : null}
         {shelterArray.modalState ? <InfoModal/> : null}
         {tableTest ? <table className='shelterTable' id='shelters'>
