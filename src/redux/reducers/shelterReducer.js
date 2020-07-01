@@ -10,6 +10,7 @@ const initialShelterState = {
   youthData: [],
   spinnerState: false,
   modalState: false,
+  reportShelterArray: []
 }
 
 
@@ -25,6 +26,12 @@ function shelterReducer(state = initialShelterState, action) {
       return{
         ...state,
         shelters:[]
+      }
+
+    case shelterActions.ADD_REPORT_SHELTERS:
+      return{
+        ...state,
+        reportShelterArray:[action.payload]
       }
 
     case shelterActions.ADD_SELECTED_DATE:

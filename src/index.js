@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.scss';
 import App from './App';
+import Report from './Report';
 import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -12,6 +13,7 @@ ReactDOM.render(
 <Router>
   <Switch>
       <Route path='/' exact component={App}/> 
+      <Route path='/csv' exact component={Report}/>
   </Switch>
 </Router>
 </Provider>,
