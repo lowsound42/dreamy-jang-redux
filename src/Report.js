@@ -120,6 +120,7 @@ function Report() {
                    <th>Date</th>
                    <th>Shelter Name</th>
                    <th>Program Name</th>
+                   <th>Sector</th>
                    <th>Occupancy</th>
                    <th>Capacity</th>
                    <th>% Occupancy</th>
