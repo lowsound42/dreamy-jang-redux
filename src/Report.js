@@ -161,7 +161,7 @@ function Report() {
   const [state, reactDispatch] = useReducer(reducer, initialState)
   
   return (
-    <>
+    <div className='main'>
     <DateRangeInput
       onDatesChange={data => reactDispatch({type: 'dateChange', payload: data})}
       onFocusChange={focusedInput => reactDispatch({type: 'focusChange', payload: focusedInput})}
@@ -195,7 +195,7 @@ function Report() {
                   {renderTableData()}
                </tbody>
             </table> : null}
-    </>
+    </div>
   )
 }
 
