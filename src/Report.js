@@ -172,13 +172,14 @@ function Report() {
   
   return (
     <div className='main'>
+      <div className='holder'>
        <ThemeProvider
       theme={{
         breakpoints: ["32em", "48em", "64em"],
         reactDatepicker: {
           daySize: [36, 40],
           fontFamily: "system-ui, -apple-system",
-          datepickerPosition: 'left',
+          inputLabelPosition: 'center',          
           datepickerBorderRadius: '10px',
         }
       }}
@@ -191,6 +192,7 @@ function Report() {
       focusedInput={state.focusedInput} // START_DATE, END_DATE or null
     />
     </ThemeProvider>
+    </div>
     <button onClick={() => sectorFunc()}>Arrange by sector</button>
     <button onClick={() => shelterFunc()}>Arrange by shelter</button>
     {sectorTest ? 
