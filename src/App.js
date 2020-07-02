@@ -122,9 +122,11 @@ function App() {
             ? null
             : 'Please select a day'}
         </p>
-        <Link className='active-list--item_name' to='csv'>DOWNLOAD CUSTOM DATA</Link>
+        <div className='button_container'>
         {buttonTest ? <button className='dataButton' onClick={() => doTheProcessing()}>More Data</button> : null}
+        <Link className='active-list--item_name' to='csv'>Download custom data</Link>
         {shelterArray.modalState ? <InfoModal/> : null}
+        </div>
         {tableTest ? <table className='shelterTable' id='shelters'>
                <tbody className='shelterTable__body'>
                  <tr>
