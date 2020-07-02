@@ -118,7 +118,7 @@ function Report() {
   }
 
   const renderTableData = () => {
-    if (sectorTest){
+    if (sectorTest && shelterArray.reportShelterArray[0]){
    return shelterArray.reportShelterArray[0].data.map((object, index) => {
       return object.map(item => {
         console.log('hmm')
