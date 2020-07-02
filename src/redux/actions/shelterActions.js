@@ -12,6 +12,7 @@ export const TOGGLE_SPINNER_ON = 'TOGGLE_SPINNER_OFF';
 export const ADD_SELECTED_DATE = 'ADD_SELECTED_DATE';
 export const RESET_SHELTER_ARRAY = 'RESET_SHELTER_ARRAY';
 export const ADD_REPORT_SHELTERS = 'ADD_REPORT_SHELTERS'
+export const ADD_REPORT_FACILITIES = 'ADD_REPORT_FACILITIES'
 
 //Action Creators
 export const reset = () => ({
@@ -27,6 +28,12 @@ export const addReportShelters = value => ({
   type: ADD_REPORT_SHELTERS,
   payload: value
 });
+
+export const addReportFacilities = value => ({
+  type: ADD_REPORT_FACILITIES,
+  payload: value
+});
+
 
 export const addSelectedDate = value => ({
   type: ADD_SELECTED_DATE,
