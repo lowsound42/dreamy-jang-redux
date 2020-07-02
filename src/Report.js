@@ -198,7 +198,7 @@ function Report() {
     {shelterTest ? 
     <Dropdown className='dateRange' options={shelterOptions} onChange={(event) => dropState(event)} value={shelterDefaultOption} placeholder="Select an option" />
     : null}
-    {buttonTest ? <button onClick={() => sendData()}>Click to download info</button> : null}
+    {buttonTest ? <button onClick={() => sendData()}>World's Okayest Table</button> : null}
     <p>Once you click on download it might look like nothings happening, especially if you select a large date range.<br/> Give it up to 10 seconds to work before trying again (or letting me know). 
     <br/>I'm working on a loading bar/spinner and will get that up in a bit
     </p>
