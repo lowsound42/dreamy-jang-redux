@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import * as actions from './redux/actions/shelterActions';
 import {DateRangeInput} from '@datepicker-react/styled'
 import moment from 'moment';
+import { CSVLink } from "react-csv";
 import axios from 'axios';
 import './styles/Report.scss';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import { addReportShelters } from './redux/actions/shelterActions';
+import { ThemeProvider } from "styled-components";
 
 const initialState = {
   startDate: null,
@@ -32,6 +33,8 @@ function Report() {
    const shelterArray = useSelector(state => state);
    const dispatch = useDispatch();
 
+   let tempArray = [["Run a report and THEN click here! Some day this will be a proper website, I promise"]];
+
   const shelterURL = 'https://blooming-castle-18936.herokuapp.com/shelterData';
   const url = 'http://localhost:8080/shelterData'
   const [dateArrayState, setDateArray] = useState([])
@@ -41,6 +44,7 @@ function Report() {
   const [sectorTest, setSectorTest] = useState(false);
   const [shelterTest, setShelterTest] = useState(false);
   const [buttonTest, setButtonTest] = useState(false);
+  const [downloadData, setDownloadData] = useState([['run'],['a'],['query'],['before'],['clikcing'],['here!']]);
 
   const sectorOptions = [
     'Pick a sector here and a date above', 'Women', 'Men', 'Families', 'Co-ed', 'Youth'
@@ -118,10 +122,11 @@ function Report() {
   }
 
   const renderTableData = () => {
+    tempArray = [];
     if (sectorTest && shelterArray.reportShelterArray[0]){
     return shelterArray.reportShelterArray[0].data.map((object, index) => {
       return object.map(item => {
-        console.log('hmm')
+        tempArray.push(item);
         return (
           <tr key={Math.random()}>
             <td className='shelterTable__body-row--date'>{item.OCCUPANCY_DATE.slice(0,10)}</td>
@@ -133,7 +138,7 @@ function Report() {
             <td className='shelterTable__body-row--small'>{Number((item.OCCUPANCY/item.CAPACITY)*100).toFixed(2)+ '%'}</td>
           </tr>
        )
-      })   
+      })
     })
   }
   else {
@@ -141,7 +146,7 @@ function Report() {
     if (shelterArray.reportFacilityArray[0]){
     return shelterArray.reportFacilityArray[0].data.map((object, index) => {
       return object.map(item => {
-        console.log('hmm')
+        tempArray.push(item);
         return (
           <tr key={Math.random()}>
             <td className='shelterTable__body-row--date'>{item.OCCUPANCY_DATE.slice(0,10)}</td>
@@ -162,6 +167,23 @@ function Report() {
   
   return (
     <div className='main'>
+       <ThemeProvider
+      theme={{
+        breakpoints: ["32em", "48em", "64em"],
+        reactDatepicker: {
+          daySize: [36, 40],
+          fontFamily: "system-ui, -apple-system",
+          datepickerPosition: 'left',
+          datepickerBorderRadius: '10px',
+          colors: {
+            accessibility: "#D80249",
+            selectedDay: "#f7518b",
+            selectedDayHover: "#F75D95",
+            primaryColor: "#d8366f"
+          }
+        }
+      }}
+    >
     <DateRangeInput
       onDatesChange={data => reactDispatch({type: 'dateChange', payload: data})}
       onFocusChange={focusedInput => reactDispatch({type: 'focusChange', payload: focusedInput})}
@@ -169,6 +191,7 @@ function Report() {
       endDate={state.endDate} // Date or null
       focusedInput={state.focusedInput} // START_DATE, END_DATE or null
     />
+    </ThemeProvider>
     <button onClick={() => sectorFunc()}>Arrange by sector</button>
     <button onClick={() => shelterFunc()}>Arrange by shelter</button>
     {sectorTest ? 
@@ -194,7 +217,16 @@ function Report() {
                 </tr>
                   {renderTableData()}
                </tbody>
-            </table> : null}
+            </table>
+             : null}
+            <CSVLink
+            data={tempArray}
+            filename={"my-file.csv"}
+            className="btn btn-primary"
+            target="_blank"
+          >
+            Download me
+          </CSVLink>;
     </div>
   )
 }
