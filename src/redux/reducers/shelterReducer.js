@@ -10,8 +10,10 @@ const initialShelterState = {
   youthData: [],
   spinnerState: false,
   modalState: false,
+  targetModalState: false,
   reportShelterArray: [],
-  reportFacilityArray: []
+  reportFacilityArray: [],
+  targetCheckerArray: []
 }
 
 
@@ -27,6 +29,12 @@ function shelterReducer(state = initialShelterState, action) {
       return{
         ...state,
         shelters:[]
+      }
+
+    case shelterActions.RESET_TARGETCHECKER_ARRAY:
+      return{
+        ...state,
+        targetCheckerArray:[]
       }
 
     case shelterActions.ADD_REPORT_SHELTERS:
@@ -65,36 +73,48 @@ function shelterReducer(state = initialShelterState, action) {
         modalState: !state.modalState
       }
 
-      case shelterActions.ADD_WOMEN_DATA:
-        return{
-          ...state,
-          womenData: [action.payload]
-        }
+    case shelterActions.CHANGE_TARGETMODAL_STATE:
+    return{
+      ...state,
+      targetModalState: !state.targetModalState
+    }
 
-      case shelterActions.ADD_MEN_DATA:
+    case shelterActions.ADD_WOMEN_DATA:
       return{
         ...state,
-        menData: [action.payload]
+        womenData: [action.payload]
       }
 
-      case shelterActions.ADD_FAMILY_DATA:
+    case shelterActions.ADD_TARGETCHECKER_DATA:
       return{
         ...state,
-        familyData: [action.payload]
+        targetCheckerArray: [action.payload]
       }
 
-      case shelterActions.ADD_COED_DATA:
-        return{
-          ...state,
-          coedData: [action.payload]
-        }
-        
-      case shelterActions.ADD_YOUTH_DATA:
-        console.log(action.payload);
-        return{
-          ...state,
-          youthData: [action.payload]
-        }
+    case shelterActions.ADD_MEN_DATA:
+    return{
+      ...state,
+      menData: [action.payload]
+    }
+
+    case shelterActions.ADD_FAMILY_DATA:
+    return{
+      ...state,
+      familyData: [action.payload]
+    }
+
+    case shelterActions.ADD_COED_DATA:
+      return{
+        ...state,
+        coedData: [action.payload]
+      }
+      
+    case shelterActions.ADD_YOUTH_DATA:
+      console.log(action.payload);
+      return{
+        ...state,
+        youthData: [action.payload]
+      }
 
     default:
       return state

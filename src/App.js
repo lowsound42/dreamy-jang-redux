@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from './redux/actions/shelterActions';
 import InfoModal from './InfoModal';
+import TargetModal from './TargetModal';
 import axios from 'axios';
 import Spinner from './Spinner';
 import loader from './assets/loader.gif';
@@ -33,7 +34,6 @@ function App() {
 
  
   useEffect(() => {
-    console.log(shelterArray.shelters[0])
       if ((shelterArray.shelters[0] < 1) && selectedDay)
       {
         dispatch(actions.toggleSpinnerOn())
@@ -88,6 +88,10 @@ function App() {
       dispatch(actions.addYouthData(shelterArray.shelters[0].filter(item => ((item.SECTOR.includes('Youth'))))));
     }
 
+    const targetProcessing = () => {
+      dispatch(actions.changeTargetModalState())
+    }
+
   //rendering data to table
   const renderTableData = () => {
     buttonTestFunc()
@@ -124,8 +128,10 @@ function App() {
         </p>
         <div className='button_container'>
         {buttonTest ? <button className='dataButton' onClick={() => doTheProcessing()}>More Data</button> : null}
+        {buttonTest ? <button className='dataButton' onClick={() => targetProcessing()}>Check against targets</button> : null}
         <Link className='active-list--item_name' to='csv'>Download custom data</Link>
         {shelterArray.modalState ? <InfoModal/> : null}
+        {shelterArray.targetModalState ? <TargetModal/> : null}
         </div>
         {tableTest ? <table className='shelterTable' id='shelters'>
                <tbody className='shelterTable__body'>

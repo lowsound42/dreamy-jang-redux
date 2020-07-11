@@ -2,6 +2,7 @@
 
 export const ADD_SHELTER_DATA = 'ADD_SHELTER_DATA';
 export const CHANGE_MODAL_STATE = 'CHANGE_MODAL_STATE';
+export const CHANGE_TARGETMODAL_STATE = 'CHANGE_TARGETMODAL_STATE';
 export const ADD_WOMEN_DATA = 'ADD_WOMEN_DATA';
 export const ADD_MEN_DATA = 'ADD_MEN_DATA';
 export const ADD_FAMILY_DATA = 'ADD_FAMILY_DATA';
@@ -11,12 +12,18 @@ export const TOGGLE_SPINNER_OFF = 'TOGGLE_SPINNER_ON';
 export const TOGGLE_SPINNER_ON = 'TOGGLE_SPINNER_OFF';
 export const ADD_SELECTED_DATE = 'ADD_SELECTED_DATE';
 export const RESET_SHELTER_ARRAY = 'RESET_SHELTER_ARRAY';
-export const ADD_REPORT_SHELTERS = 'ADD_REPORT_SHELTERS'
-export const ADD_REPORT_FACILITIES = 'ADD_REPORT_FACILITIES'
+export const ADD_REPORT_SHELTERS = 'ADD_REPORT_SHELTERS';
+export const ADD_REPORT_FACILITIES = 'ADD_REPORT_FACILITIES';
+export const ADD_TARGETCHECKER_DATA = 'ADD_TARGETCHECKER_DATA';
+export const RESET_TARGETCHECKER_ARRAY = 'RESET_TARGETCHECKER_ARRAY';
 
 //Action Creators
 export const reset = () => ({
   type: RESET_SHELTER_ARRAY
+})
+
+export const resetTarget = () => ({
+  type: RESET_TARGETCHECKER_ARRAY,
 })
 
 export const addShelterData = value => ({
@@ -34,6 +41,10 @@ export const addReportFacilities = value => ({
   payload: value
 });
 
+export const addTargetCheckerData = value => ({
+  type: ADD_TARGETCHECKER_DATA,
+  payload: value
+});
 
 export const addSelectedDate = value => ({
   type: ADD_SELECTED_DATE,
@@ -75,4 +86,8 @@ export const toggleSpinnerOff = () => ({
 
 export const changeModalState = () => ({
   type: CHANGE_MODAL_STATE,
+});
+
+export const changeTargetModalState = () => ({
+  type: CHANGE_TARGETMODAL_STATE,
 });
